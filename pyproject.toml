@@ -1,0 +1,56 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "edsdk-ctypes"
+version = "0.0.1"
+description = "Pure-ctypes Python wrapper for the Canon EDSDK (macOS / Linux / Windows)"
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.12"
+authors = [{ name = "chibiegg", email = "chibiegg@users.noreply.github.com" }]
+keywords = ["canon", "edsdk", "eos", "camera"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: MacOS :: MacOS X",
+    "Operating System :: POSIX :: Linux",
+    "Operating System :: Microsoft :: Windows",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Multimedia :: Graphics :: Capture :: Digital Camera",
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff>=0.6", "mypy>=1.10"]
+numpy = ["numpy>=1.26"]
+
+[project.urls]
+Repository = "https://github.com/chibiegg/python-edsdk-ctypes"
+Issues = "https://github.com/chibiegg/python-edsdk-ctypes/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/edsdk"]
+
+[tool.hatch.build.targets.sdist]
+include = ["src/edsdk", "examples", "tests", "tools", "README.md", "LICENSE"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "W"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+files = ["src/edsdk"]
