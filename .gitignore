@@ -29,8 +29,10 @@ env/
 Thumbs.db
 
 # EDSDK binaries (must NOT be committed — distributed by Canon under NDA)
-EDSDK/
-EDSDK_64/
+# 先頭スラッシュでリポジトリ直下に限定する。これを付けないと
+# core.ignorecase=true の macOS で src/edsdk/ にもマッチしてしまう。
+/EDSDK/
+/EDSDK_64/
 *.dll
 *.so
 *.dylib
